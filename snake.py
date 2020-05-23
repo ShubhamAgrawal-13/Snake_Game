@@ -2,6 +2,7 @@
 
 import pygame
 import random
+import numpy as np
 from time import sleep
 
 class Cube(object):
@@ -31,7 +32,8 @@ class Cube(object):
 
 def random_snack(rows, snake, color):
 	positons = snake.body
-	colors=[(255,0,0),(255,255,0),(0,255,0),(0,0,255),(0,255,255),(255,0,255)]
+	# colors=[(255,0,0),(255,255,0),(0,255,0),(0,0,255),(0,255,255),(255,0,255)]
+	colors=[tuple(np.random.choice(range(256), size=3)) for i in range(20)]
 	while(1):
 		x=random.randrange(rows)
 		y=random.randrange(rows)
@@ -42,7 +44,7 @@ def random_snack(rows, snake, color):
 			break
 	c=3
 	while(colors[c] == color):
-		c=random.randrange(6)
+		c=random.randrange(20)
 
 	return Cube(x, y, colors[c])
 
